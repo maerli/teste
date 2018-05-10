@@ -10,9 +10,9 @@ const NOME_DISCIPLINA = 0;
 lista_de_disciplinas = [12535353,12535354,12535355,12535356];
 
 let alunos = {
-              '74w3ti7dy': [ 'marcos maerli pereira', '3' ],
-              '74y23mnpn': [ 'maria joana souza', '2' ],
-              '75oxa77zs': [ 'maria maria maria', '2' ]
+            '74w3ti7dy': [ 'marcos maerli pereira', 'u' ],
+            '74y23mnpn': [ 'maria joana souza', 'j' ],
+            '75oxa77zs': [ 'maria maria maria', 'n' ]
               }
 
 //id:[nome,carga horaria,creditos]
@@ -107,7 +107,7 @@ function mudarGrade(aluno){
 function decodificar(){
   let a = {};
   for(let i in alunos){
-     a[parseInt(i,36)] = [alunos[i][0],parseInt(parseInt(alunos[i][1],36).toString(),2).toString().slice(1).split('')];
+     a[parseInt(i,36)] = [alunos[i][0],parseInt(alunos[i][1],36).toString(2).slice(1).split('')];
   }
   alunos = a;
 }

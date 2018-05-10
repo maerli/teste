@@ -13,6 +13,6 @@ function parse(t,m) {
 }
 
 for(let i in alunos){
-   n[parse(i,10)] = [alunos[i][0],parse(1 + alunos[i][1],2)];
+   n[parse(i,10)] = [alunos[i][0],parse(1 + alunos[i][1].join(''),2)];
 }
 console.log(n);
