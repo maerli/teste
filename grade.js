@@ -107,7 +107,7 @@ function mudarGrade(aluno){
 function decodificar(){
   let a = {};
   for(let i in alunos){
-     a[parseInt(i,36)] = [alunos[i][0],parseInt(parseInt(alunos[i][1],36),2).toString().slice(1).split('')];
+     a[parseInt(i,36)] = [alunos[i][0],parseInt(parseInt(alunos[i][1],36).toString(),2).toString().slice(1).split('')];
   }
   alunos = a;
 }
