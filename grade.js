@@ -9,22 +9,21 @@ const NOME_DISCIPLINA = 0;
 
 lista_de_disciplinas = [12535353,12535354,12535355,12535356];
 
-alunos = {
-          20131114000102:["marcos maerli pereira",[1,1,1,0]],
-          20135363636363:["maria joana souza",    [0,0,1,1]],
-          20193845465656:["maria maria maria",    [0,1,1,1]]
-};
-
+let alunos = {
+              '74w3ti7dy': [ 'marcos maerli pereira', '3' ],
+              '74y23mnpn': [ 'maria joana souza', '2' ],
+              '75oxa77zs': [ 'maria maria maria', '2' ]
+              }
 
 //id:[nome,carga horaria,creditos]
-old_disciplinas = {
+let old_disciplinas = {
     12535353:["fisica geral 1",30,1],
     12535354:["fisica geral 2",30,5],
     12535355:["fisica geral 3",30,3],
     12535356:["fisica geral 4",30,3]
 }
 //id:[nome,carga horaria,creditos,disciplina correspondente]
-new_disciplinas = {
+let new_disciplinas = {
     12643545:["matematica 1",20,2,12535353],
     12643546:["portugues 2",20,2,12535354],
     12643547:["geometria",20,2,12535355],
@@ -65,9 +64,10 @@ function mudarGrade(aluno){
     let total_antiga_creditos = 0;
     let total_nova_ch = 0;
     let total_nova_creditos = 0;
+    let text = [];
 
-    console.log('\n\t Aluno(a):' + alunos[aluno][ALUNO]);
-
+    text.push(['Aluno(a):',alunos[aluno][ALUNO]]);
+    text.push(['nova disciplina','carga horária','créditos','discilina correspondente','caraga horária','créditos','situação']);
     for(let i in new_disciplinas){
         let correspondente = new_disciplinas[i][EQUIVALENTE];
         let index = lista_de_disciplinas.indexOf(correspondente);
@@ -88,22 +88,26 @@ function mudarGrade(aluno){
           total_nova_ch += new_disciplinas[i][CH];
           total_nova_creditos += new_disciplinas[i][CREDITOS];
 
-          console.log(`
-          ${nome_new_disciplina} [${ch_new_disciplina}hrs] [${cr_new_diciplina}] \t ${nome_old_disciplina} [${ch_old_disciplina}hrs] [${cr_old_diciplina}] \t ok
-          `);
+          text.push([nome_new_disciplina,ch_new_disciplina,cr_new_diciplina,nome_old_disciplina,ch_old_disciplina,cr_old_diciplina,'ok']);
 
         }else{
-          console.log(`
-          ${nome_new_disciplina} [${ch_new_disciplina}hrs] [${cr_new_diciplina}] \t ${nome_old_disciplina} [${ch_old_disciplina}hrs] [${cr_old_diciplina}] \t x
-          `);
+          text.push([nome_new_disciplina,ch_new_disciplina,cr_new_diciplina,nome_old_disciplina,ch_old_disciplina,cr_old_diciplina,'x']);
         }
     }
-    console.log("\t Antiga grade");
-    console.log(`\t carga horaria -> ${total_antiga_ch} \t creditos -> ${total_antiga_creditos}`);
+    text.push(['Antiga grade']);
+    text.push(['carga horaria',total_antiga_ch,'creditos',total_antiga_creditos]);
 
-    console.log("\t Nova grade");
-    console.log(`\t carga horaria -> ${total_nova_ch} \t creditos -> ${total_nova_creditos}`);
+    text.push(['Nova grade']);
+    text.push(['carga horaria',total_nova_ch,'creditos',total_nova_creditos]);
+
+    return text;
 }
 
 
-mudarGrade(20131114000102);
+function decodificar(){
+  let a = {};
+  for(let i in alunos){
+     a[parseInt(i,36)] = [alunos[i][0],parseInt(parseInt(alunos[i][1],36),2).toString().slice(1).split('')];
+  }
+  alunos = a;
+}

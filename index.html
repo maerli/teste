@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="pt" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Nova Grade</title>
+    <script type="text/javascript" src="grade.js"></script>
+    <script type="text/javascript">
+      function $(id){
+        return document.querySelector(id);
+      }
+      function escape(text){
+        return '<table border>'+text.map(x => '<tr>' + x.map(y => '<td>'+ y+'</td>').join('')+'</tr>').join('')+'</table>';
+      }
+
+      addEventListener('load',function(event){
+        $('#form').addEventListener('submit',function(event) {
+          event.preventDefault();
+          let aluno = $('#aluno').value;
+          if(alunos[aluno]){
+            document.body.innerHTML = "<button id='voltar'>Voltar</button>" + escape(mudarGrade(aluno));
+            $('#voltar').addEventListener('click',function() {
+              location.replace('');
+          });
+        }
+          return false;
+        });
+      });
+
+    </script>
+    <style>
+      table{
+        border-collapse: collapse;
+        padding:4px;
+      }
+      body{
+        margin-left: 10px;
+      }
+      #aluno{
+        color:gray;
+        -webkit-border-radius:7px;
+        font-weight: bold;
+        font-size: 19px;
+        outline: none;
+        border:1px solid #000000;
+        padding:2px;
+        text-indent: 3px;
+      }
+      #voltar{
+        outline: none;
+        color: white;
+        background-color: #0000ff;
+        padding:4px;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <img src="if.png" width="100" height="180"\>
+      <form id="form" methot="get" action="">
+    <input type="text" id="aluno" placeholder="matricula">
+  </center>
+  </form>
+  </body>
+</html>
