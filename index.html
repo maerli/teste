@@ -5,6 +5,7 @@
     <title>Nova Grade</title>
     <script type="text/javascript" src="grade.js"></script>
     <script type="text/javascript">
+     let codified = false;
       function $(id){
         return document.querySelector(id);
       }
@@ -14,7 +15,10 @@
 
       addEventListener('load',function(event){
         $('#form').addEventListener('submit',function(event) {
-          decodificar();
+          if(!codified){
+            decodificar();
+            codified = true;
+          }
           event.preventDefault();
           let aluno = $('#aluno').value;
           if(alunos[aluno]){
